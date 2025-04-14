@@ -2,6 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 import notes from './notes/index.ts'
+import {shikiPlugin }from '@vuepress/plugin-shiki'
 export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
@@ -19,12 +20,20 @@ export default defineUserConfig({
   },
   head: [
     // 配置站点图标
-    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
   ],
 
   bundler: viteBundler(),
   shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
-
+  plugins: [
+    shikiPlugin({
+      // 配置项
+      themes: {
+        light: 'github-light',
+        dark: 'catppuccin-latte',
+      }
+    }),
+  ],
   theme: plumeTheme({
     notes,
     /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
@@ -93,11 +102,16 @@ export default defineUserConfig({
      * Shiki 代码高亮
      * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
      */
-    // codeHighlighter: {
-    //   twoslash: true, // 启用 twoslash
-    //   whitespace: true, // 启用 空格/Tab 高亮
-    //   lineNumbers: true, // 启用行号
-    // },
+    codeHighlighter: {
+      themes: {
+        light: 'github-light',
+        dark: 'catppuccin-macchiato',
+      },
+      twoslash: true, // 启用 twoslash
+      whitespace: true, // 启用 空格/Tab 高亮
+      lineNumbers: true, // 启用行号
+
+    },
 
     /* 文章字数统计、阅读时间，设置为 false 则禁用 */
     // readingTime: true,
