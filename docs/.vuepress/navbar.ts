@@ -13,7 +13,7 @@ export const zhNavbar = defineNavbarConfig([
       { text: '高等数学', link: '/notes/high_math/README.md' }
     ],
   },
-  {text: '实验室', link: 'http://42.193.114.254:8999'}
+  // {text: '实验室', link: 'http://42.193.114.254:8999'}
 ])
 
 export const enNavbar = defineNavbarConfig([
